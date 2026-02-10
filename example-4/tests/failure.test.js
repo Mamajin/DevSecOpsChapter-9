@@ -2,10 +2,15 @@
 const { test, expect } = require('@playwright/test');
 
 //
-// A test that will intentionally fail to demonstrate CI pipeline with failing tests
+// A test that will be commented to show passing tests in the CI pipeline
+// Uncomment the failing assertion to demonstrate pipeline failure handling
 //
-test("intentional failure test example", async ({ page }) => {
+test("intentional failure test example - currently disabled", async ({ page }) => {
     // This test is designed to fail to show how the CI pipeline handles failures
-    // Comment out this line to make the test pass
-    expect(true).toBe(false);
+    // Uncomment the line below to make the test fail
+    // expect(true).toBe(false);
+    
+    // For now, this test just passes
+    expect(true).toBe(true);
 });
+
