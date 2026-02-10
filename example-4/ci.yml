@@ -1,0 +1,35 @@
+name: Microservice CI Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: example-4/package-lock.json
+
+    - name: Install Dependencies
+      working-directory: example-4
+      run: npm install
+
+    - name: Install Playwright Browsers
+      working-directory: example-4
+      run: npx playwright install --with-deps
+
+    - name: Run Automated Tests
+      working-directory: example-4
+      run: npm test
