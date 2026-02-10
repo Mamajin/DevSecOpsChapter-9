@@ -20,9 +20,12 @@ jobs:
       with:
         node-version: '18'
         cache: 'npm'
+        cache-dependency-path: example-4/package-lock.json
 
     - name: Install Dependencies
+      working-directory: example-4
       run: npm install
 
     - name: Run Automated Tests
+      working-directory: example-4
       run: npm test
